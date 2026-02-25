@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formly | AI Form Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0;1&opsz=24&wght=400&GRAD=0"
+    />
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/app.css" />
+    <link rel="stylesheet" href="./assets/css/builder.css" />
+  </head>
+  <body>
+    <section class="main-area">
+      <header class="topbar">
+        <div class="topbar-right" style="gap: 1rem">
+          <a href="./index.html" class="icon-btn" aria-label="Back to dashboard">
+            <span class="material-symbols-outlined">menu</span>
+          </a>
+          <div class="sidebar-brand" style="border-bottom: 0; padding: 0">
+            <div class="brand-mark">F</div>
+            <div class="brand-title">Formly AI</div>
+          </div>
+          <div>
+            <h1 id="active-form-name" style="font-size: 1.2rem; margin: 0">New Form</h1>
+            <span id="active-form-status" class="badge success">Draft</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <a href="./analytics.html" class="btn btn-ghost">Preview</a>
+          <button id="save-form" class="btn btn-ghost">Save</button>
+          <button id="publish-form" class="btn btn-dark">Publish</button>
+          <div class="avatar">AJ</div>
+        </div>
+      </header>
+
+      <main class="builder-layout">
+        <aside class="builder-rail">
+          <a class="rail-btn" aria-label="Dashboard" href="./index.html">
+            <span class="material-symbols-outlined">dashboard</span>
+          </a>
+          <button class="rail-btn active" aria-label="AI Builder">
+            <span class="material-symbols-outlined">auto_awesome</span>
+          </button>
+          <button class="rail-btn" aria-label="Fields">
+            <span class="material-symbols-outlined">format_list_bulleted</span>
+          </button>
+          <button class="rail-btn" aria-label="Settings">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+        </aside>
+
+        <section class="builder-chat">
+          <div class="chat-head">
+            <h2>AI Form Builder</h2>
+            <p>Describe your form requirements and I'll build it instantly.</p>
+          </div>
+
+          <div id="chat-feed" class="chat-feed" aria-live="polite"></div>
+
+          <form id="prompt-form" class="composer">
+            <textarea
+              id="prompt-input"
+              rows="3"
+              placeholder="Describe changes (e.g., Add a comments field and make email required)"
+              required
+            ></textarea>
+            <div class="composer-row">
+              <button id="generate-btn" class="btn btn-primary" type="submit">Generate</button>
+              <button id="reset-btn" class="btn btn-ghost" type="button">Reset</button>
+            </div>
+          </form>
+
+          <section class="chips-wrap">
+            <p>Suggested changes</p>
+            <div id="chips" class="chips"></div>
+          </section>
+
+          <details class="settings">
+            <summary>Model and Prompt Settings</summary>
+
+            <div class="settings-grid">
+              <label>
+                Model
+                <select id='model-id'></select>
+              </label>
+              <label id='dtype-label' hidden>
+                Precision (WASM)
+                <select id='dtype'>
+                  <option value='q4'>q4</option>
+                  <option value='q8'>q8</option>
+                  <option value='fp16'>fp16</option>
+                  <option value='fp32'>fp32</option>
+                </select>
+              </label>
+              <label>
+                Max new tokens
+                <input id='max-tokens' type='number' min='120' max='1500' value='700' />
+              </label>
+              <label>
+                Temperature
+                <input id='temperature' type='number' min='0' max='1.2' step='0.1' value='0.3' />
+              </label>
+            </div>
+
+            <label class="system-label" for="system-prompt">System Prompt</label>
+            <textarea id="system-prompt" rows="9"></textarea>
+          </details>
+        </section>
+
+        <section class="builder-preview">
+          <div class="preview-toolbar">
+            <button class="icon-btn" aria-label="Desktop"><span class="material-symbols-outlined">desktop_windows</span></button>
+            <button class="icon-btn" aria-label="Tablet"><span class="material-symbols-outlined">tablet_mac</span></button>
+            <button class="icon-btn" aria-label="Mobile"><span class="material-symbols-outlined">smartphone</span></button>
+            <span style="width: 1px; height: 18px; background: var(--line)"></span>
+            <button class="icon-btn" id="refresh-preview" aria-label="Refresh"><span class="material-symbols-outlined">refresh</span></button>
+          </div>
+
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 0.45rem">
+            <span id="status-line" class="status-pill">Ready</span>
+            <span id="device-chip" class="status-pill">Device: Checking...</span>
+            <span id="model-chip" class="status-pill">Model idle</span>
+          </div>
+
+          <progress id="download-progress" max="100" value="0" hidden></progress>
+
+          <article class="preview-card">
+            <div class="preview-cover"></div>
+            <div class="preview-body">
+              <h3 id="preview-title" class="preview-title">Your Form</h3>
+              <p id="preview-description" class="preview-desc">Form description will appear here.</p>
+              <form id="preview-form" class="preview-form"></form>
+              <button id="preview-submit" class="btn btn-primary" style="width: 100%; margin-top: 0.72rem" type="button">
+                Submit
+              </button>
+            </div>
+          </article>
+
+          <details class="schema-panel">
+            <summary>Generated schema JSON</summary>
+            <pre id="schema-json">{}</pre>
+          </details>
+        </section>
+      </main>
+    </section>
+
+    <script type="module" src="./assets/js/pages/builder.js"></script>
+  </body>
+</html>

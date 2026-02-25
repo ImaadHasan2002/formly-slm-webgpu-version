@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formly | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0;1&opsz=24&wght=400&GRAD=0"
+    />
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/app.css" />
+    <link rel="stylesheet" href="./assets/css/dashboard.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">F</div>
+          <div class="brand-title">Formly AI</div>
+        </div>
+
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link active" href="./index.html">
+              <span class="material-symbols-outlined">dashboard</span>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="./builder.html">
+              <span class="material-symbols-outlined">edit_square</span>
+              Form Builder
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="./analytics.html">
+              <span class="material-symbols-outlined">analytics</span>
+              Analytics
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <span class="material-symbols-outlined">hub</span>
+              Integrations
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <span class="material-symbols-outlined">settings</span>
+              Settings
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <div class="profile-chip">
+            <div class="avatar">AJ</div>
+            <div>
+              <p class="profile-name">Alex Johnson</p>
+              <p class="profile-plan">Free Plan</p>
+            </div>
+          </div>
+
+          <div class="upgrade-card">
+            <p class="title">Upgrade Plan</p>
+            <p class="sub">Get unlimited AI generations.</p>
+            <button class="btn btn-primary" style="margin-top: 0.65rem; width: 100%">Upgrade Now</button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="main-area">
+        <header class="topbar">
+          <div class="search">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Search forms, responses, or templates..." />
+          </div>
+
+          <div class="topbar-right">
+            <button class="icon-btn" aria-label="Notifications">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+
+            <div class="user-chip">
+              <div>
+                <p class="name">Alex Johnson</p>
+                <p class="plan">Free Plan</p>
+              </div>
+              <div class="avatar">AJ</div>
+            </div>
+          </div>
+        </header>
+
+        <main class="page-content">
+          <section class="dashboard-head">
+            <h1 class="page-title">Good morning, Alex!</h1>
+            <p class="page-subtitle">Ready to create something amazing today?</p>
+          </section>
+
+          <section class="prompt-card card">
+            <div class="prompt-inner">
+              <span class="prompt-pill">New AI Form Builder</span>
+              <h2 class="prompt-title">Describe your form, and we'll build it.</h2>
+              <div class="prompt-row">
+                <input
+                  id="builder-prompt"
+                  type="text"
+                  placeholder="e.g. A registration form for a design workshop with dietary preferences"
+                />
+                <button id="go-builder" class="btn btn-primary">Generate</button>
+              </div>
+              <div class="prompt-footer">
+                <span>Try:</span>
+                <button data-prompt="Customer feedback form with rating and comments">Customer Feedback</button>
+                <button data-prompt="Job application form with portfolio link and experience">Job Application</button>
+                <button data-prompt="Event RSVP with meal and attendance type">Event RSVP</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="kpi-grid section-row">
+            <article class="card kpi-card">
+              <p class="label">Total Responses</p>
+              <p class="value" id="total-responses">0</p>
+              <span class="trend up" id="total-trend">+0% this week</span>
+            </article>
+            <article class="card kpi-card">
+              <p class="label">Active Forms</p>
+              <p class="value" id="active-forms">0</p>
+              <span class="trend up" id="forms-trend">0 drafts pending</span>
+            </article>
+            <article class="card kpi-card">
+              <p class="label">Avg. Completion Rate</p>
+              <p class="value" id="avg-completion">0%</p>
+              <span class="trend up" id="completion-trend">+0% this week</span>
+            </article>
+          </section>
+
+          <section class="section-row">
+            <h3>Recent Forms</h3>
+            <div id="recent-forms" class="form-grid"></div>
+          </section>
+        </main>
+      </section>
+    </div>
+
+    <script type="module" src="./assets/js/pages/dashboard.js"></script>
+  </body>
+</html>

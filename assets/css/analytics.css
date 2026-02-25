@@ -1,0 +1,172 @@
+.analytics-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.form-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.form-title h2 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.metrics-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.metrics-grid .card {
+  padding: 1rem;
+}
+
+.metrics-grid .label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.metrics-grid .value {
+  margin: 0.45rem 0 0;
+  font-size: 2.35rem;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.chart-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 1rem;
+}
+
+.chart-card {
+  padding: 0.95rem;
+}
+
+#submission-chart {
+  width: 100%;
+  height: 280px;
+}
+
+.chart-legend {
+  margin-top: 0.45rem;
+  display: flex;
+  gap: 0.68rem;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.device-wrap {
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+}
+
+.device-ring {
+  width: min(270px, 72%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  background: conic-gradient(#111827 0deg 198deg, #98a2b3 198deg 324deg, #d6dae3 324deg 360deg);
+}
+
+.device-ring::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.responses-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.responses-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.responses-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.responses-controls .search {
+  width: 280px;
+}
+
+.status-chip {
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.73rem;
+  font-weight: 600;
+}
+
+.status-chip.new {
+  background: #e6efff;
+  color: #285cc8;
+}
+
+.status-chip.viewed {
+  background: #eef2f7;
+  color: #475467;
+}
+
+@media (max-width: 1200px) {
+  .metrics-grid,
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .responses-controls .search {
+    width: 180px;
+  }
+}
+
+@media (max-width: 720px) {
+  .analytics-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .responses-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .responses-controls .search {
+    width: 100%;
+  }
+}

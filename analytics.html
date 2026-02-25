@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formly | Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0;1&opsz=24&wght=400&GRAD=0"
+    />
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/app.css" />
+    <link rel="stylesheet" href="./assets/css/analytics.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">F</div>
+          <div class="brand-title">Formly</div>
+        </div>
+
+        <ul class="nav-list">
+          <li>
+            <a class="nav-link" href="./index.html">
+              <span class="material-symbols-outlined">dashboard</span>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="./builder.html">
+              <span class="material-symbols-outlined">edit_square</span>
+              Form Builder
+            </a>
+          </li>
+          <li>
+            <a class="nav-link active" href="./analytics.html">
+              <span class="material-symbols-outlined">analytics</span>
+              Analytics
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <span class="material-symbols-outlined">settings</span>
+              Settings
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <div class="profile-chip">
+            <div class="avatar">JD</div>
+            <div>
+              <p class="profile-name">John Doe</p>
+              <p class="profile-plan">Pro Plan</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="main-area">
+        <header class="topbar">
+          <div class="form-title">
+            <h2 id="analytics-form-title">Contact Form v2</h2>
+            <span id="analytics-form-status" class="badge success">Active</span>
+          </div>
+          <div class="topbar-right">
+            <button class="btn btn-ghost">Share</button>
+            <button class="btn btn-dark">Export CSV</button>
+          </div>
+        </header>
+
+        <main class="page-content">
+          <section class="analytics-head">
+            <p class="page-subtitle" style="margin: 0">Performance overview and response behavior</p>
+            <select id="range-select" class="select">
+              <option value="30">Last 30 Days</option>
+              <option value="14">Last 14 Days</option>
+              <option value="7">Last 7 Days</option>
+            </select>
+          </section>
+
+          <section class="metrics-grid">
+            <article class="card">
+              <p class="label">Total Submissions</p>
+              <p id="metric-submissions" class="value">0</p>
+              <span id="metric-submissions-trend" class="trend up">+0%</span>
+            </article>
+            <article class="card">
+              <p class="label">Completion Rate</p>
+              <p id="metric-completion" class="value">0%</p>
+              <span id="metric-completion-trend" class="trend down">-0%</span>
+            </article>
+            <article class="card">
+              <p class="label">Avg. Time to Complete</p>
+              <p id="metric-time" class="value">0m 00s</p>
+              <span id="metric-time-trend" class="trend up">vs prev period</span>
+            </article>
+          </section>
+
+          <section class="chart-grid">
+            <article class="card chart-card">
+              <div class="panel-title-row">
+                <h3 class="panel-title">Submission Volume</h3>
+                <button class="icon-btn"><span class="material-symbols-outlined">more_horiz</span></button>
+              </div>
+              <svg id="submission-chart" role="img" aria-label="Submission volume line chart"></svg>
+            </article>
+
+            <article class="card chart-card">
+              <div class="panel-title-row">
+                <h3 class="panel-title">Device Breakdown</h3>
+                <button class="icon-btn"><span class="material-symbols-outlined">more_horiz</span></button>
+              </div>
+              <div class="device-wrap">
+                <div id="device-ring" class="device-ring"></div>
+                <div class="chart-legend" style="margin-top: 1rem">
+                  <span class="legend-item"><span class="swatch" style="background: #111827"></span>Desktop</span>
+                  <span class="legend-item"><span class="swatch" style="background: #98a2b3"></span>Mobile</span>
+                  <span class="legend-item"><span class="swatch" style="background: #d6dae3"></span>Tablet</span>
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <section class="card responses-card">
+            <div class="responses-head">
+              <h3 class="panel-title" style="margin: 0">Recent Responses</h3>
+              <div class="responses-controls">
+                <div class="search">
+                  <span class="material-symbols-outlined">search</span>
+                  <input id="response-search" type="text" placeholder="Search responses..." />
+                </div>
+                <button class="icon-btn"><span class="material-symbols-outlined">filter_list</span></button>
+              </div>
+            </div>
+
+            <div style="overflow: auto">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Date &amp; Time</th>
+                    <th>Email Address</th>
+                    <th>Full Name</th>
+                    <th>Inquiry Type</th>
+                    <th>Device</th>
+                  </tr>
+                </thead>
+                <tbody id="responses-body"></tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </section>
+    </div>
+
+    <script type="module" src="./assets/js/pages/analytics.js"></script>
+  </body>
+</html>

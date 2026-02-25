@@ -1,0 +1,142 @@
+.dashboard-head {
+  margin-bottom: 1rem;
+}
+
+.prompt-card {
+  border-radius: 22px;
+  padding: 1.15rem;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(130deg, #5f6cff, #e949b8) border-box;
+}
+
+.prompt-inner {
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: #f8f9ff;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.prompt-pill {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 0.25rem 0.58rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #4f56d8;
+  background: #e7ebff;
+  margin-bottom: 0.58rem;
+}
+
+.prompt-title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.2vw, 2.6rem);
+  letter-spacing: -0.02em;
+}
+
+.prompt-row {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.56rem;
+  background: #fff;
+  border: 1px solid #d9ddf0;
+  border-radius: 14px;
+  padding: 0.4rem;
+}
+
+.prompt-row input {
+  border: 0;
+  background: transparent;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+}
+
+.prompt-row input:focus {
+  outline: none;
+}
+
+.prompt-footer {
+  margin-top: 0.7rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.prompt-footer button {
+  border: 0;
+  background: transparent;
+  color: #475467;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.section-row {
+  margin-top: 1.15rem;
+}
+
+.section-row h3 {
+  margin: 0 0 0.78rem;
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.92rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.form-card {
+  overflow: hidden;
+}
+
+.form-cover {
+  height: 130px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cover-live-a {
+  background: linear-gradient(125deg, #9de2b2, #3892a0, #8dd2ab);
+}
+
+.cover-draft {
+  background: #cad7f0;
+}
+
+.cover-live-b {
+  background: linear-gradient(130deg, #1b1b1e, #343b4a);
+}
+
+.form-body {
+  padding: 0.9rem 0.95rem;
+}
+
+.form-meta {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  min-height: 2.5rem;
+}
+
+.form-footer {
+  margin-top: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.65rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 1200px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
