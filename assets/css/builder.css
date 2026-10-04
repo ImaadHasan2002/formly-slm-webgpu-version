@@ -312,11 +312,23 @@
   gap: 0.3rem;
 }
 
-.option-item {
+.field .option-item {
   display: flex;
   align-items: center;
   gap: 0.42rem;
+  margin-bottom: 0;
   font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.field .option-item input {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--accent);
 }
 
 .status-pill {

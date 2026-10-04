@@ -1,61 +1,53 @@
-# Formly 
+# Formly
 
-Formly is part of a project that includes a backend and a frontend. The frontend is a single-page application that includes the following pages:
-- `Dashboard` (`/index.html`)
-- `AI Form Builder` (`/builder.html`)
-- `Analytics` (`/analytics.html`)
+**Describe a form in plain English → get a working form back.** The AI model runs entirely in your browser, so no server, API key, or data leaves your machine.
 
-The builder dynamically generates interactive forms from prompts using a system-prompt-driven schema workflow and WebGPU-first Transformers.js inference.
+> 💡 Think of Formly as Google Forms with an assistant who drafts the questions for you, and that assistant lives inside your browser tab instead of on someone else's server.
 
-## Run
+![Formly dashboard](docs/images/dashboard.png)
+
+---
+
+## ⚡ Run it in 30 seconds
 
 ```bash
-cd /Users/imaadh/Downloads/formly-slm-webgpu-version
-python main.py
+python main.py            # needs Python 3.13+, no packages to install
 ```
 
-Open:
-- `http://127.0.0.1:8000/` (Dashboard)
-- `http://127.0.0.1:8000/builder.html` (AI Builder)
-- `http://127.0.0.1:8000/analytics.html` (Analytics)
+Then open **http://127.0.0.1:8000** in Chrome or Edge (they support WebGPU, which makes it fast).
 
-## Architecture
+| Page | URL | What it's for |
+|---|---|---|
+| Dashboard | `/` | See your forms, start a new one |
+| AI Builder | `/builder.html` | Chat with the AI to build a form |
+| Analytics | `/analytics.html` | Responses and charts for a form |
 
-### Pages
-- `index.html`: Dashboard UI
-- `builder.html`: AI form generation workspace + live preview
-- `analytics.html`: Form performance and responses
+Screenshots of every page are in the [Overview](docs/01-overview.md#the-three-pages).
 
-### Shared CSS
-- `assets/css/tokens.css`: design tokens (colors, radius, shadows)
-- `assets/css/app.css`: shared layout and base components
-- `assets/css/dashboard.css`: dashboard-only styles
-- `assets/css/builder.css`: builder-only styles
-- `assets/css/analytics.css`: analytics-only styles
+Options: `python main.py --port 9000 --host 0.0.0.0`
 
-### Shared JS Core
-- `assets/js/core/config.js`: constants and default system prompt
-- `assets/js/core/utils.js`: formatting and utility helpers
-- `assets/js/core/storage.js`: local app state persistence and seeded data
-- `assets/js/core/model-client.js`: Transformers.js runtime + JSON output parsing
-- `assets/js/core/schema.js`: schema normalization and fallback generation
-- `assets/js/core/form-renderer.js`: dynamic form preview rendering
-- `assets/js/core/charts.js`: analytics line chart + device ring rendering
+---
 
-### Page Controllers
-- `assets/js/pages/dashboard.js`
-- `assets/js/pages/builder.js`
-- `assets/js/pages/analytics.js`
+## 📚 Docs: read in this order
 
-## Notes
+| # | Page | Read it if you want to… | Time |
+|---|---|---|---|
+| 1 | [Overview](docs/01-overview.md) | Understand what Formly is and how the pieces fit | 3 min |
+| 2 | [How AI generation works](docs/02-how-generation-works.md) | Follow a prompt from text box to rendered form | 5 min |
+| 3 | [Code map](docs/03-code-map.md) | Find which file to edit for a given change | 3 min |
+| 4 | [Form schema & data](docs/04-schema-and-data.md) | Understand the JSON format and where data is saved | 4 min |
+| 5 | [FAQ & troubleshooting](docs/05-faq.md) | Fix something that isn't working | 2 min |
 
-- WebGPU is used when available; otherwise WASM fallback is used.
-- If model output is not valid JSON, Formly applies guided fallback schema generation to keep editing uninterrupted.
+---
 
-## Quick Resources
+## 🧱 Tech at a glance
 
-- [Transformers.js Documentation](https://huggingface.co/docs/transformers.js)
-- [WebGPU Specification](https://www.w3.org/TR/webgpu/)
-- [Hugging Face Model Hub](https://huggingface.co/models?library=transformers.js)
-- [Qwen2 Model Family](https://huggingface.co/Qwen)
-- [Can I Use WebGPU](https://caniuse.com/webgpu)
+- **Frontend:** plain HTML + CSS + vanilla JavaScript (ES modules). No build step, no framework, no `npm install`.
+- **AI runtime:** [WebLLM](https://github.com/mlc-ai/web-llm) on WebGPU, with [Transformers.js](https://huggingface.co/docs/transformers.js) on WASM as a fallback for browsers without WebGPU.
+- **Models:** small language models (SLMs) of about 0.5B–2B parameters. Default: Qwen 2.5 1.5B.
+- **Storage:** the browser's `localStorage`. There is no database.
+- **Server:** `main.py` is only a static file server for local development. The site can be deployed to any static host (e.g. Netlify).
+
+## 🔗 Useful links
+
+- [WebLLM](https://github.com/mlc-ai/web-llm) · [Transformers.js](https://huggingface.co/docs/transformers.js) · [Can I use WebGPU?](https://caniuse.com/webgpu) · [Qwen models](https://huggingface.co/Qwen)
